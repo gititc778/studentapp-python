@@ -52,6 +52,13 @@ pipeline {
         }
     }
 
+        stage('Deploy to AKS') {
+            steps {
+                sh "kubectl apply -f deployment.yaml -n devops"
+            }
+        }
+    
+
 
 }
 
