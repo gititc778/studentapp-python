@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: flask-app
+  namespace: devops  # optional
 spec:
   replicas: 1
   selector:
@@ -17,7 +18,12 @@ spec:
         image: dockeritc778/studentapp:v10
         ports:
         - containerPort: 5000
-
+        volumeMounts:
+        - mountPath: /tmp
+          name: tmp-vol
+      volumes:
+      - name: tmp-vol
+        emptyDir: {}
 ---
 
 apiVersion: v1
